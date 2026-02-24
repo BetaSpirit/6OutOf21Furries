@@ -5,8 +5,8 @@ import time
 # -----------------------
 # Configuration
 # -----------------------
-#BUTTON_PIN = 17
-#LCD_ADDRESS = 0x27  # Change if needed
+#BUTTON_PIN = 17 # unknown at the moment until I get my hands on the RPi
+#LCD_ADDRESS = 0x27  # Change when screen decided.
 
 # -----------------------
 # GPIO Setup
@@ -43,5 +43,6 @@ print(value)
 #time.sleep(340)
 #lcd.clear
 #GPIO.cleanup
+
 
 
