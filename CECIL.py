@@ -1,18 +1,18 @@
-#import RPi.GPIO as GPIO
-#from RPLCD.i2c import CharLCD
+import RPi.GPIO as GPIO
+from RPLCD.i2c import CharLCD
 import random
 import time
 # -----------------------
 # Configuration
 # -----------------------
-#BUTTON_PIN = 17 # unknown at the moment until I get my hands on the RPi
-#LCD_ADDRESS = 0x27  # Change when screen decided.
+BUTTON_PIN = 17 # unknown at the moment until I get my hands on the RPi
+LCD_ADDRESS = 0x27  # Change when screen decided.
 
 # -----------------------
 # GPIO Setup
 # -----------------------
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 start = ("000")
 
 print(start)
@@ -41,8 +41,9 @@ print(value)
 
 #finally 
 #time.sleep(340)
-#lcd.clear
-#GPIO.cleanup
+LCD.clear
+GPIO.cleanup
+
 
 
 
