@@ -1,49 +1,52 @@
 import RPi.GPIO as GPIO
-from RPLCD.i2c import CharLCD
+
 import random
 import time
-# -----------------------
-# Configuration
-# -----------------------
-BUTTON_PIN = 17 # unknown at the moment until I get my hands on the RPi
-LCD_ADDRESS = 0x27  # Change when screen decided.
 
-# -----------------------
-# GPIO Setup
-# -----------------------
+BUTTON_PIN=17
+LCD_ADDRESS = 0x27
+
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 start = ("000")
-
-print(start)
-time.sleep(2)
-print("\033[A                             \033[A")
-
 timestorepeat = (20)
 
-#try: 
-# while true
-#timestorepeat = (20)
-while timestorepeat > 0:
-     value = random.randint(101, 999)
-     print(value)
-     value = random.randint(101, 999)
-     time.sleep(0.05)
-     print("\033[A                             \033[A")
-     timestorepeat -= 1
+def wait_for_button():
+    """
+    Wait until button is pressed.
+    """
+    while GPIO.input(17) == GPIO.HIGH:
+       time.sleep(0.01)
+        
+    while GPIO.input(17) == GPIO.LOW:
+        time.sleep(0.01)
+        
+        time.sleep(0.2)
+        
 
-print(value)
+try:
+    while True:
+        print("000")
+        
+        wait_for_button()
+        
+        while timestorepeat > 0:
+            numout = random.randint(101,999)
+            print(numout)
+            numout = random.randint(101,999)
+            time.sleep(0.08)
+            print("\033[A                             \033[A")
+            timestorepeat -=1
+        print(numout)
+        wait_for_button()
+        
+except KeyboardInterrupt:
+    pass
+ 
+finally:
+    GPIO.cleanup()
 
-#except 
-#pass
-# repeat back to initial clause until button pressed
-#
-
-#finally 
-#time.sleep(340)
-LCD.clear
-GPIO.cleanup
 
 
-
-
+      
